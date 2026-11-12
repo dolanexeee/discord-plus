@@ -16,7 +16,6 @@ struct DiscordWebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
-        config.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Safari/605.1.15"
         config.allowsInlineMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
         config.websiteDataStore = .default()
@@ -27,6 +26,9 @@ struct DiscordWebView: UIViewRepresentable {
         controller.add(context.coordinator.messageHandler, name: "discordPlus")
 
         let webView = WKWebView(frame: .zero, configuration: config)
+        // NOTE: customUserAgent lives on WKWebView, not on the configuration.
+        // macOS desktop Safari UA: Discord serves the full desktop web client.
+        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Safari/605.1.15"
         webView.navigationDelegate = context.coordinator
         webView.uiDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = true
