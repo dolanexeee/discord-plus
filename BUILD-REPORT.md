@@ -3,11 +3,11 @@
 **Status: ✅ BUILD SUCCEEDED — real `.ipa` produced and verified.**
 
 - **Repo:** https://github.com/dolanexeee/discord-plus (public)
-- **Head commit:** `TBD` (branch `main`)
+- **Head commit:** `61b42d7` (branch `main`)
 - **Build:** GitHub Actions, run
-  TBD
-  — macOS runner, Xcode, Release, unsigned
-- **Artifact:** `DiscordPlus-ipa` (TBD bytes) — download from the run's
+  https://github.com/dolanexeee/discord-plus/actions/runs/43223170842
+  — macOS runner, Xcode, Release, unsigned — ✅ SUCCESS on the first try
+- **Artifact:** `DiscordPlus-ipa` (225,362 bytes) — download from the run's
   Artifacts section (needs a GitHub login; artifacts expire after 90 days)
 - **Release:** https://github.com/dolanexeee/discord-plus/releases/tag/v1.1.0
   — direct `.ipa` download:
@@ -30,6 +30,7 @@
 ## What the .ipa contains (verified by download + inspection)
 
 - `Payload/DiscordPlus.app/DiscordPlus` — Mach-O 64-bit **arm64** executable
+  (807,176 bytes)
 - Bundle id `com.mustafa.discordplus`, display name "Discord Plus",
   version 1.1.0 (build 2), minimum iOS 16.0, iPhone only
 - All 15 JS files, byte-identical to the sources: `loader.js` +
@@ -163,7 +164,10 @@ README.md · LICENSE (MIT) · .gitignore
    (203,852 bytes); release v1.0.0 published.
 
 ### v1.1.0
-TBD — filled in after the CI run.
+- **Run 43223170842 — ✅ SUCCESS on the first try** (commit `61b42d7`).
+  Artifact `DiscordPlus-ipa` (225,362 bytes); `.ipa` 229,005 bytes;
+  release v1.1.0 published. All 14 JS files in the `.ipa` verified
+  byte-identical to source; `hideBlocked.js` confirmed absent.
 
 Two code fixes made before the first push, from a read-through:
 - `WebBridge.injectUserPlugins` had a race: plugin code was appended on
