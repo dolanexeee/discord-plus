@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		07FE49E514DFCBF096A69287 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = DiscordWebView.swift;
+			sourceTree = "<group>";
+		};
+		08BC1320C2D3615A6DB361A4 = {
+			fileRef = 4135D8EB5094C6BBBAF117BA;
+			isa = PBXBuildFile;
+		};
+		0BDA10548D48EE731A5761D5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = PluginSettingsView.swift;
+			sourceTree = "<group>";
+		};
+		10B2EECDCE26A2B90B0FA39E = {
+			children = (
+				97FCCA44BD32C66ADD6EDBB8,
+				6C2EB4EB8470C28BBCB85237,
+				5D6256076C2B9AC68C16A59C,
+				BF87A6BAEAEA8185FBF57C8B,
+				F9F6D4DFF51E05AF67E8DA43,
+				B04AD5111FD0FB0CF773D527,
+			);
+			isa = PBXGroup;
+			name = plugins;
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		1662967C9B06DABC735F8C47 = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder.assetcatalog;
+			path = Assets.xcassets;
+			sourceTree = "<group>";
+		};
+		1A5A81E5EA84EA2E1F41CAA4 = {
+			fileRef = 97FCCA44BD32C66ADD6EDBB8;
+			isa = PBXBuildFile;
+		};
+		1B718C5F9742248021DDA211 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = WebBridge.swift;
+			sourceTree = "<group>";
+		};
+		1F4E3D13C2320EDA50221924 = {
+			buildConfigurations = (
+				4A43692AD8BCEEB8B727C85B,
+				C28449456A5A705A7479770B,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			isa = XCConfigurationList;
+		};
+		263C3250E44852CC2B70010C = {
+			fileRef = F9F6D4DFF51E05AF67E8DA43;
+			isa = PBXBuildFile;
+		};
+		285BB1C1430063331E9F5DD0 = {
+			buildActionMask = 2147483647;
+			files = (
+				F2685B76AB57C3F2489F68E1,
+				1A5A81E5EA84EA2E1F41CAA4,
+				263C3250E44852CC2B70010C,
+				EE73B129AABB7969A526F9C4,
+				71C8D3A668EE20192EEC9E2E,
+				4E9AC847E3E82B868AFD8485,
+				D6CB6CE64800AC5C62A979E5,
+				7023F32FFD0F243298B7280A,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F3A6B1E78F896718625FF06 = {
+			children = (
+				4279AFD41001864585CF994F,
+			);
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30267D5E1CB904DD55642EE8 = {
+			children = (
+				1662967C9B06DABC735F8C47,
+				DD12C2868DD90FBDB8B3A148,
+				91EA8A8C3B075BD8E2AC29B5,
+				D1D0524B025E57AFFF263442,
+				774EB1A00A00AB3CBCF6108E,
+				38DF21AEF4612506D6BE5CBE,
+				887A6F90336FF23D95C3914B,
+			);
+			isa = PBXGroup;
+			name = DiscordPlus;
+			path = DiscordPlus;
+			sourceTree = "<group>";
+		};
+		354589B28580510B6EC24620 = {
+			buildConfigurations = (
+				4D8F6610AF6606489ED8DFBC,
+				3DDF142C91E4BE3A6BA5A69E,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+			isa = XCConfigurationList;
+		};
+		38DF21AEF4612506D6BE5CBE = {
+			children = (
+				6CB6E9A765009186A5313A0E,
+				A31AA4C746EA3DBDF463337C,
+				4135D8EB5094C6BBBAF117BA,
+				0BDA10548D48EE731A5761D5,
+				54BAEB3D4CC302E3A8ED7B57,
+				E85CEBCB6361593F79D73670,
+			);
+			isa = PBXGroup;
+			name = Views;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3DDF142C91E4BE3A6BA5A69E = {
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf-with-dsym;
+				ENABLE_PREVIEWS = "YES";
+				GENERATE_INFOPLIST_FILE = "NO";
+				INFOPLIST_FILE = DiscordPlus/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mustafa.discordplus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = "YES";
+				SWIFT_OPTIMIZATION_LEVEL = -O;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Release;
+		};
+		4135D8EB5094C6BBBAF117BA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = CustomCSSView.swift;
+			sourceTree = "<group>";
+		};
+		424153ED3CD079DB4DB459AF = {
+			buildActionMask = 2147483647;
+			files = (
+				EDA1BACAE80E3930154053F9,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4279AFD41001864585CF994F = {
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = DiscordPlus.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		46F86FAA6BBF9AC94A7E4595 = {
+			attributes = {
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					5ED7A97F969D0E2EE6A1F7D5 = {
+						CreatedOnToolsVersion = 16.0;
+						LastSwiftMigration = 1600;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1F4E3D13C2320EDA50221924;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			isa = PBXProject;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 518DA81DB9B99529C0C0AEBE;
+			productRefGroup = 2F3A6B1E78F896718625FF06;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5ED7A97F969D0E2EE6A1F7D5,
+			);
+		};
+		4A43692AD8BCEEB8B727C85B = {
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = gnu++20;
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = "NO";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				ENABLE_TESTABILITY = "YES";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = "YES";
+				GCC_WARN_UNUSED_VARIABLE = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFS = "";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = "YES";
+				ONLY_ACTIVE_ARCH = "YES";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = -Onone;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Debug;
+		};
+		4D8F6610AF6606489ED8DFBC = {
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_TESTABILITY = "YES";
+				GENERATE_INFOPLIST_FILE = "NO";
+				INFOPLIST_FILE = DiscordPlus/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mustafa.discordplus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMBED_LIBRARIES_WITH_INSTALL = "YES";
+				SWIFT_OPTIMIZATION_LEVEL = -Onone;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Debug;
+		};
+		4E9AC847E3E82B868AFD8485 = {
+			fileRef = 6C2EB4EB8470C28BBCB85237;
+			isa = PBXBuildFile;
+		};
+		518DA81DB9B99529C0C0AEBE = {
+			children = (
+				30267D5E1CB904DD55642EE8,
+				2F3A6B1E78F896718625FF06,
+			);
+			isa = PBXGroup;
+			sourceTree = "<group>";
+		};
+		54BAEB3D4CC302E3A8ED7B57 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = SettingsView.swift;
+			sourceTree = "<group>";
+		};
+		5D6256076C2B9AC68C16A59C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = hideBlocked.js;
+			sourceTree = "<group>";
+		};
+		5ED7A97F969D0E2EE6A1F7D5 = {
+			buildConfigurationList = 354589B28580510B6EC24620;
+			buildPhases = (
+				7A70D71C385290AF96BF1031,
+				424153ED3CD079DB4DB459AF,
+				285BB1C1430063331E9F5DD0,
+			);
+			buildRules = ();
+			dependencies = ();
+			isa = PBXNativeTarget;
+			name = DiscordPlus;
+			productName = DiscordPlus;
+			productReference = 4279AFD41001864585CF994F;
+			productType = com.apple.product-type.application;
+		};
+		6C2EB4EB8470C28BBCB85237 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = customCSS.js;
+			sourceTree = "<group>";
+		};
+		6CB6E9A765009186A5313A0E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = AboutView.swift;
+			sourceTree = "<group>";
+		};
+		6CCB6DA34603A6C7248B15B9 = {
+			children = (
+				10B2EECDCE26A2B90B0FA39E,
+				6DF06630628398494600F5BE,
+			);
+			isa = PBXGroup;
+			name = JS;
+			path = JS;
+			sourceTree = "<group>";
+		};
+		6DF06630628398494600F5BE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = loader.js;
+			sourceTree = "<group>";
+		};
+		6E284BC900FF0E3FE22CE958 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = PluginRegistry.swift;
+			sourceTree = "<group>";
+		};
+		6FE1F88785B23F6903E85F3D = {
+			fileRef = CDDF32E86A28035554AA8767;
+			isa = PBXBuildFile;
+		};
+		7023F32FFD0F243298B7280A = {
+			fileRef = 1662967C9B06DABC735F8C47;
+			isa = PBXBuildFile;
+		};
+		71C8D3A668EE20192EEC9E2E = {
+			fileRef = B04AD5111FD0FB0CF773D527;
+			isa = PBXBuildFile;
+		};
+		774EB1A00A00AB3CBCF6108E = {
+			children = (
+				07FE49E514DFCBF096A69287,
+				B077FEBBF8906E0219764026,
+				1B718C5F9742248021DDA211,
+			);
+			isa = PBXGroup;
+			name = Web;
+			path = Web;
+			sourceTree = "<group>";
+		};
+		7859BEE09F828AD4F96FAD73 = {
+			fileRef = 1B718C5F9742248021DDA211;
+			isa = PBXBuildFile;
+		};
+		7A70D71C385290AF96BF1031 = {
+			buildActionMask = 2147483647;
+			files = (
+				83F0DD101575FE2FBEC32FEF,
+				6FE1F88785B23F6903E85F3D,
+				C9ACC8A4B92F7346497A16C8,
+				A76AB5507385B9743D49945B,
+				D8F61F4559A9E85AD5ACE382,
+				7859BEE09F828AD4F96FAD73,
+				E499374A7BCEF5D6AADCCBD6,
+				F53D44C35248EA074038CDC3,
+				DF1E3008599C597EEB5E86A3,
+				F20BD615224D2C0B7529C26F,
+				91B4FA457C79E476B75A726D,
+				08BC1320C2D3615A6DB361A4,
+				B7393CC37F89C4A96DEF99DA,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CB8ECBDE409D4331953D00C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = ThemeEngine.swift;
+			sourceTree = "<group>";
+		};
+		83F0DD101575FE2FBEC32FEF = {
+			fileRef = DD12C2868DD90FBDB8B3A148;
+			isa = PBXBuildFile;
+		};
+		887A6F90336FF23D95C3914B = {
+			children = (
+				6CCB6DA34603A6C7248B15B9,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		91B4FA457C79E476B75A726D = {
+			fileRef = 0BDA10548D48EE731A5761D5;
+			isa = PBXBuildFile;
+		};
+		91EA8A8C3B075BD8E2AC29B5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = Info.plist;
+			sourceTree = "<group>";
+		};
+		97FCCA44BD32C66ADD6EDBB8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = copyIDs.js;
+			sourceTree = "<group>";
+		};
+		A31AA4C746EA3DBDF463337C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = ContentView.swift;
+			sourceTree = "<group>";
+		};
+		A76AB5507385B9743D49945B = {
+			fileRef = 6E284BC900FF0E3FE22CE958;
+			isa = PBXBuildFile;
+		};
+		B04AD5111FD0FB0CF773D527 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = mediaTools.js;
+			sourceTree = "<group>";
+		};
+		B077FEBBF8906E0219764026 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = UserScripts.swift;
+			sourceTree = "<group>";
+		};
+		B7393CC37F89C4A96DEF99DA = {
+			fileRef = 6CB6E9A765009186A5313A0E;
+			isa = PBXBuildFile;
+		};
+		BF87A6BAEAEA8185FBF57C8B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = hideNitro.js;
+			sourceTree = "<group>";
+		};
+		C28449456A5A705A7479770B = {
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = gnu++20;
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = "NO";
+				DEBUG_INFORMATION_FORMAT = dwarf-with-dsym;
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = "YES";
+				GCC_WARN_UNUSED_VARIABLE = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFS = "";
+				MTL_ENABLE_DEBUG_INFO = "NO";
+				MTL_FAST_MATH = "YES";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = -O;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			isa = XCBuildConfiguration;
+			name = Release;
+		};
+		C9ACC8A4B92F7346497A16C8 = {
+			fileRef = 7CB8ECBDE409D4331953D00C;
+			isa = PBXBuildFile;
+		};
+		CDDF32E86A28035554AA8767 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = SettingsStore.swift;
+			sourceTree = "<group>";
+		};
+		D1D0524B025E57AFFF263442 = {
+			children = (
+				6E284BC900FF0E3FE22CE958,
+				CDDF32E86A28035554AA8767,
+				7CB8ECBDE409D4331953D00C,
+			);
+			isa = PBXGroup;
+			name = App;
+			path = App;
+			sourceTree = "<group>";
+		};
+		D6CB6CE64800AC5C62A979E5 = {
+			fileRef = BF87A6BAEAEA8185FBF57C8B;
+			isa = PBXBuildFile;
+		};
+		D8F61F4559A9E85AD5ACE382 = {
+			fileRef = 07FE49E514DFCBF096A69287;
+			isa = PBXBuildFile;
+		};
+		DD12C2868DD90FBDB8B3A148 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = DiscordPlusApp.swift;
+			sourceTree = "<group>";
+		};
+		DF1E3008599C597EEB5E86A3 = {
+			fileRef = 54BAEB3D4CC302E3A8ED7B57;
+			isa = PBXBuildFile;
+		};
+		E499374A7BCEF5D6AADCCBD6 = {
+			fileRef = B077FEBBF8906E0219764026;
+			isa = PBXBuildFile;
+		};
+		E7E8F68207365CB360E3EDF6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = WebKit.framework;
+			path = System/Library/Frameworks/WebKit.framework;
+			sourceTree = SDKROOT;
+		};
+		E85CEBCB6361593F79D73670 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = ThemeSettingsView.swift;
+			sourceTree = "<group>";
+		};
+		EDA1BACAE80E3930154053F9 = {
+			fileRef = E7E8F68207365CB360E3EDF6;
+			isa = PBXBuildFile;
+		};
+		EE73B129AABB7969A526F9C4 = {
+			fileRef = 5D6256076C2B9AC68C16A59C;
+			isa = PBXBuildFile;
+		};
+		F20BD615224D2C0B7529C26F = {
+			fileRef = E85CEBCB6361593F79D73670;
+			isa = PBXBuildFile;
+		};
+		F2685B76AB57C3F2489F68E1 = {
+			fileRef = 6DF06630628398494600F5BE;
+			isa = PBXBuildFile;
+		};
+		F53D44C35248EA074038CDC3 = {
+			fileRef = A31AA4C746EA3DBDF463337C;
+			isa = PBXBuildFile;
+		};
+		F9F6D4DFF51E05AF67E8DA43 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = localTimestamps.js;
+			sourceTree = "<group>";
+		};
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595;
+}

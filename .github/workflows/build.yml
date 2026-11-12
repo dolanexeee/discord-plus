@@ -1,0 +1,55 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          XCODE="$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -1)"
+          if [ -n "$XCODE" ]; then
+            echo "Using $XCODE"
+            sudo xcode-select -s "$XCODE/Contents/Developer"
+          fi
+          xcodebuild -version
+
+      - name: Build (unsigned)
+        run: |
+          xcodebuild -project DiscordPlus.xcodeproj \
+            -scheme DiscordPlus \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build
+
+      - name: Package .ipa
+        run: |
+          APP_PATH="build/DerivedData/Build/Products/Release-iphoneos/DiscordPlus.app"
+          test -d "$APP_PATH"
+          ls -la "$APP_PATH"
+          mkdir -p build/Payload
+          cp -R "$APP_PATH" build/Payload/
+          (cd build && zip -r DiscordPlus.ipa Payload)
+          ls -lh build/DiscordPlus.ipa
+          unzip -l build/DiscordPlus.ipa | head -30
+
+      - name: Upload .ipa artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DiscordPlus-ipa
+          path: build/DiscordPlus.ipa
+          if-no-files-found: error

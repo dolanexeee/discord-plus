@@ -1,0 +1,22 @@
+# Xcode
+build/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift Package Manager
+.swiftpm/
+Packages/
+Package.resolved
+
+# Editor
+.vscode/
+*.swp
