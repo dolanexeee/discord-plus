@@ -18,7 +18,7 @@
   var callbackId = 0;
 
   var DP = window.DP = {
-    version: '1.0.0',
+    version: '1.1.0',
     plugins: {},
     settings: window.__DP_SETTINGS__ || {},
 
@@ -89,8 +89,127 @@
         var m = window.location.pathname.match(/^\/channels\/([^\/]+)\/([^\/]+)/);
         if (!m) return { guildId: null, channelId: null };
         return { guildId: m[1] === '@me' ? null : m[1], channelId: m[2] };
+      },
+
+      snowflakeDate: function (id) {
+        // Discord snowflake -> creation date (ms since epoch).
+        try {
+          var n = BigInt(id);
+          return new Date(Number((n >> 22n) + 1420070400000n));
+        } catch (e) { return null; }
+      },
+
+      extractMessage: function (el) {
+        // Pull {id, authorName, authorId, content, timestampISO} out of a
+        // message row node. Best-effort: selectors change between Discord
+        // releases, so every field has a fallback.
+        if (!el) return null;
+        var row = el.closest ? (el.closest('[id^="chat-messages-"]') || el) : el;
+        var id = null;
+        if (row.id && row.id.indexOf('chat-messages-') === 0) id = row.id.replace('chat-messages-', '');
+        var contentEl = row.querySelector ? row.querySelector('[id^="message-content-"]') : null;
+        var content = contentEl ? contentEl.innerText : '';
+        var authorName = '';
+        var authorId = null;
+        var header = row.querySelector ? row.querySelector('[class*="header"]') : null;
+        if (header) {
+          var nameEl = header.querySelector('[class*="username"]');
+          if (nameEl) authorName = nameEl.textContent.trim();
+        }
+        if (row.querySelector) {
+          var img = row.querySelector('img[src*="/avatars/"]');
+          if (img) {
+            var m = img.src.match(/\/avatars\/(\d+)\//);
+            if (m) authorId = m[1];
+          }
+        }
+        var timestampISO = null;
+        var timeEl = row.querySelector ? row.querySelector('time[datetime]') : null;
+        if (timeEl) timestampISO = timeEl.getAttribute('datetime');
+        if (!id && !content) return null;
+        return { id: id, authorName: authorName, authorId: authorId, content: content, timestampISO: timestampISO };
       }
     },
+
+    /* Webpack store access for the Discord web client.
+       The client ships as webpack chunks on window.webpackChunkdiscord_app;
+       pushing a fake chunk entry gives us the require function and its
+       module cache, so plugins can read the same stores Discord itself
+       uses (GuildMemberStore, UserStore, GuildStore, RoleStore...).
+       This is the same technique Vencord uses; it reads local client
+       state only — no network, no token access. */
+    webpack: (function () {
+      var req = null;
+      function getRequire() {
+        if (req) return req;
+        var chunk = window.webpackChunkdiscord_app;
+        if (!chunk || typeof chunk.push !== 'function') return null;
+        try {
+          chunk.push([['dp-finder'], {}, function (r) { req = r; }]);
+        } catch (e) { return null; }
+        return req;
+      }
+      function allExports() {
+        var r = getRequire();
+        if (!r || !r.c) return [];
+        var out = [];
+        Object.keys(r.c).forEach(function (id) {
+          try {
+            var m = r.c[id];
+            if (m && m.exports) out.push(m.exports);
+          } catch (e) {}
+        });
+        return out;
+      }
+      function candidateExports(m) {
+        // Discord modules often wrap the real object in .default / .Z / .ZP.
+        var out = [m];
+        if (m && typeof m === 'object') {
+          if (m.default) out.push(m.default);
+          if (m.Z) out.push(m.Z);
+          if (m.ZP) out.push(m.ZP);
+        }
+        return out;
+      }
+      function hasProps(obj) {
+        var props = Array.prototype.slice.call(arguments, 1);
+        if (!obj || (typeof obj !== 'object' && typeof obj !== 'function')) return false;
+        for (var i = 0; i < props.length; i++) {
+          if (!(props[i] in obj)) return false;
+        }
+        return true;
+      }
+      return {
+        ready: function () { return !!window.webpackChunkdiscord_app; },
+        findByProps: function () {
+          var props = Array.prototype.slice.call(arguments);
+          var mods = allExports();
+          for (var i = 0; i < mods.length; i++) {
+            var cands = candidateExports(mods[i]);
+            for (var j = 0; j < cands.length; j++) {
+              if (hasProps.apply(null, [cands[j]].concat(props))) return cands[j];
+            }
+          }
+          return null;
+        },
+        /* Convenience lookups for the stores plugins need. */
+        guildMemberStore: function () {
+          return this.findByProps('getMember', 'getMemberCount');
+        },
+        userStore: function () {
+          return this.findByProps('getCurrentUser', 'getUser');
+        },
+        guildStore: function () {
+          return this.findByProps('getGuild', 'getGuilds');
+        },
+        roleStore: function () {
+          return this.findByProps('getRoles', 'getRole');
+        },
+        channelStore: function () {
+          return this.findByProps('getChannel', 'getDMFromUserId');
+        }
+      };
+    })(),
 
     registerPlugin: function (def) {
       if (!def || !def.id || typeof def.start !== 'function') {

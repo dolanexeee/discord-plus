@@ -1,24 +1,42 @@
-# Discord Plus — Build Report (v1.0.0)
+# Discord Plus — Build Report (v1.1.0)
 
 **Status: ✅ BUILD SUCCEEDED — real `.ipa` produced and verified.**
 
 - **Repo:** https://github.com/dolanexeee/discord-plus (public)
-- **Head commit:** `8dd9169` (branch `main`)
+- **Head commit:** `TBD` (branch `main`)
 - **Build:** GitHub Actions, run
-  https://github.com/dolanexeee/discord-plus/actions/runs/43220384643
-  — macOS runner, Xcode 26.3, Release, unsigned
-- **Artifact:** `DiscordPlus-ipa` (203,852 bytes) — download from the run's
+  TBD
+  — macOS runner, Xcode, Release, unsigned
+- **Artifact:** `DiscordPlus-ipa` (TBD bytes) — download from the run's
   Artifacts section (needs a GitHub login; artifacts expire after 90 days)
+- **Release:** https://github.com/dolanexeee/discord-plus/releases/tag/v1.1.0
+  — direct `.ipa` download:
+  https://github.com/dolanexeee/discord-plus/releases/download/v1.1.0/DiscordPlus.ipa
+
+## What changed in v1.1.0
+
+- **REMOVED:** Hide Blocked Messages (deleted `hideBlocked.js`, removed
+  from the registry, the project, README and this report).
+- **ADDED:** Message Logger, Timeout Countdown, Member Details, Translate
+  Messages, Export Tools, Message Bookmarks, Server Info, Silent Typing
+  (8 new plugins, 13 bundled in total).
+- **Loader:** new shared helpers in `loader.js` — `DP.webpack`
+  (webpack chunk finder + store lookups: GuildMemberStore, UserStore,
+  GuildStore, RoleStore), `DP.util.snowflakeDate`,
+  `DP.util.extractMessage`. The Copy IDs long-press menu now also hosts
+  the Translate and Bookmark actions (one menu per long-press).
+- **Version:** 1.1.0 (build 2).
 
 ## What the .ipa contains (verified by download + inspection)
 
 - `Payload/DiscordPlus.app/DiscordPlus` — Mach-O 64-bit **arm64** executable
-  (790,632 bytes)
 - Bundle id `com.mustafa.discordplus`, display name "Discord Plus",
-  version 1.0.0 (build 1), minimum iOS 16.0, iPhone only
-- All 7 JS files, byte-identical to the sources: `loader.js` (5,478) +
-  `copyIDs.js`, `localTimestamps.js`, `hideBlocked.js`, `mediaTools.js`,
-  `customCSS.js`, `hideNitro.js`
+  version 1.1.0 (build 2), minimum iOS 16.0, iPhone only
+- All 15 JS files, byte-identical to the sources: `loader.js` +
+  `copyIDs.js`, `localTimestamps.js`, `mediaTools.js`, `customCSS.js`,
+  `hideNitro.js`, `messageLogger.js`, `timeoutCountdown.js`,
+  `memberDetails.js`, `translateMessages.js`, `exportTools.js`,
+  `messageBookmarks.js`, `serverInfo.js`, `silentTyping.js`
 - `Assets.car` (compiled app icon), `Info.plist`, `PkgInfo`
 - **No embedded provisioning profile — the .ipa is unsigned by design.**
   Sign it with your own certificate and sideload it.
@@ -50,10 +68,50 @@ different DOM.
   pattern but all original code. Bundled registry + user-added plugin URLs
   (fetched on-device via URLSession). Per-plugin enable/disable + settings;
   toggling a plugin reloads the web view.
-- **6 built-in plugins:** Copy IDs (long-press message/user/server/channel)
-  · Local Timestamps (full local date/time, tooltip or replace) ·
-  Hide Blocked Messages · Media Tools (tap-to-zoom lightbox + download) ·
-  Custom CSS Loader · Hide Nitro Upsell.
+- **13 built-in plugins:**
+  - Copy IDs (long-press message/user/server/channel; also hosts the
+    Translate and Bookmark actions)
+  - Local Timestamps (full local date/time, tooltip or replace)
+  - Media Tools (tap-to-zoom lightbox + download)
+  - Custom CSS Loader
+  - Hide Nitro Upsell
+  - **Message Logger** — keeps messages seen while running: deleted
+    messages stay visible (marked deleted, with original content and
+    time) and edits keep history; 📜 log panel lists them. **Limit: it
+    cannot recover messages deleted before it was enabled, before the
+    app was installed, or while the app was closed.** Messages deleted
+    by a ban purge are kept only if they were seen first. Deleted rows
+    shown in place may be removed again by Discord's own re-render; the
+    log panel always keeps them. Reads Discord's Flux dispatcher
+    (MESSAGE_CREATE / UPDATE / DELETE) via the webpack stores, with a
+    DOM-observation fallback.
+  - **Timeout Countdown** — live countdown (remaining time + exact end
+    time) for timed-out members in profiles and as badges in the member
+    list. **Route used: Discord's own client store** —
+    `GuildMemberStore.getMember(guildId, userId).communicationDisabledUntil`
+    (the same field Discord itself uses); the profile popout's
+    "Timed out until …" text is the fallback. If neither yields a time,
+    nothing is shown.
+  - **Member Details** — account creation date (from the ID snowflake),
+    server join date, roles and account age in user profiles, from
+    UserStore / GuildMemberStore / RoleStore.
+  - **Translate Messages** — long-press → Translate; automatic direction
+    (Arabic → English, otherwise → Arabic); free no-key endpoints
+    (Google gtx primary, MyMemory fallback); translation shown in a box
+    under the message. Only the message text is sent to the service.
+  - **Export Tools** — export loaded channel messages (text or JSON)
+    and the server member list (CSV) via the ⬇️ button. **Limit: only
+    what is loaded on screen is exported** (scroll up to load more
+    history; member list is paginated by Discord).
+  - **Message Bookmarks** — long-press → Bookmark; 🔖 button opens the
+    saved list (jump to message, delete, clear all). Stored on-device
+    only (localStorage).
+  - **Server Info** — server creation date, member count, boost level
+    and channel count (ℹ️ button; GuildStore + GuildMemberStore +
+    sidebar count).
+  - **Silent Typing** — stops the client sending your typing indicator
+    (drops the `.../channels/<id>/typing` REST requests in fetch/XHR)
+    and/or hides others' typing indicators (CSS). Two toggles.
 - **Native settings UI** — SwiftUI, Arabic-first with English (RTL):
   Themes, Plugins, Custom CSS, About. The About screen and the Settings
   screen both carry the honest warning: modified clients can get a Discord
@@ -62,14 +120,14 @@ different DOM.
   plugin storage (UserDefaults), open-external. External (non-Discord)
   links open in Safari; in-page popups are routed back into the web view.
 
-## File list (39 files)
+## File list (47 files)
 
 ```
 DiscordPlus/
   DiscordPlusApp.swift          App entry point (@main)
   App/SettingsStore.swift       UserDefaults-backed settings hub
   App/ThemeEngine.swift         3 themes, accent presets, fonts, CSS builder
-  App/PluginRegistry.swift      6 bundled plugin metadata + defaults
+  App/PluginRegistry.swift      13 bundled plugin metadata + defaults
   Web/DiscordWebView.swift      WKWebView wrapper + coordinator + UA
   Web/WebBridge.swift           Injection + JS bridge (toast/log/storage)
   Web/UserScripts.swift         Document-start anti-flash script, JS loader
@@ -79,8 +137,8 @@ DiscordPlus/
   Views/PluginSettingsView.swift Plugin toggles, options, add-by-URL
   Views/CustomCSSView.swift     CSS editor + snippets
   Views/AboutView.swift         Ban-risk + privacy notes
-  Resources/JS/loader.js        window.DP plugin API + theme/CSS helpers
-  Resources/JS/plugins/*.js     6 plugins (see above)
+  Resources/JS/loader.js        window.DP plugin API + webpack helpers
+  Resources/JS/plugins/*.js     13 plugins (see above)
   Assets.xcassets/              App icon (blurple "D+") + accent colour
   Info.plist
 DiscordPlus.xcodeproj/          Generated by tools/gen_project.py
@@ -89,8 +147,9 @@ tools/gen_project.py            Xcode project generator (+ self-check)
 README.md · LICENSE (MIT) · .gitignore
 ```
 
-## Build history (failures found and fixed)
+## Build history
 
+### v1.0.0
 1. **Run 43220041813 — FAILED (exit 74, 16s):** `project.pbxproj` parse
    error, "missing semicolon in dictionary on line 211". Cause: the
    generator emitted `CLANG_CXX_LANGUAGE_STANDARD = gnu++20;` bare — `+`
@@ -100,7 +159,11 @@ README.md · LICENSE (MIT) · .gitignore
 2. **Run 43220227601 — FAILED (exit 65, 33s):** one Swift error:
    `WKWebViewConfiguration has no member 'customUserAgent'`. Fixed by
    setting the UA on the `WKWebView` after creation, before loading.
-3. **Run 43220384643 — ✅ SUCCESS (41s).**
+3. **Run 43220384643 — ✅ SUCCESS (41s).** Artifact `DiscordPlus-ipa`
+   (203,852 bytes); release v1.0.0 published.
+
+### v1.1.0
+TBD — filled in after the CI run.
 
 Two code fixes made before the first push, from a read-through:
 - `WebBridge.injectUserPlugins` had a race: plugin code was appended on
@@ -113,7 +176,8 @@ Two code fixes made before the first push, from a read-through:
 
 ## Install
 
-1. Download the `DiscordPlus-ipa` artifact from the successful run.
+1. Download the `DiscordPlus.ipa` from the v1.1.0 release (direct link
+   above) or the `DiscordPlus-ipa` artifact from the successful run.
 2. Sign the `.ipa` with your own certificate and sideload it onto the
    iPhone (annual cert — never shared with this build; the CI build is
    unsigned).
@@ -129,9 +193,12 @@ Two code fixes made before the first push, from a read-through:
   from the native app. **Not tested on a real device** — no iPhone is
   available to this build machine; on-device behaviour is the next check.
 - **Desktop layout on a phone** — pinch-zoom needed (see UA choice above).
-- **DOM-dependent plugins** (Copy IDs, timestamps, blocked-message hiding)
-  read Discord's web DOM, which Discord changes between releases; they are
-  best-effort and may need updates after a Discord web update.
+- **DOM/store-dependent plugins** read Discord's web DOM and client
+  stores, which Discord changes between releases; they are best-effort and
+  may need updates after a Discord web update.
+- **Message Logger** — see the honest limit above (no retroactive
+  recovery; in-place deleted rows may be removed by Discord's re-render,
+  the log panel keeps them).
 - **Downloaded media** goes through the web view's download handling, not
   directly into the Photos library.
 - **User-added plugin URLs** execute arbitrary JS inside Discord — only

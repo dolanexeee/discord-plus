@@ -25,10 +25,17 @@
 			children = (
 				97FCCA44BD32C66ADD6EDBB8,
 				6C2EB4EB8470C28BBCB85237,
-				5D6256076C2B9AC68C16A59C,
+				C12AAE4278663D2717578078,
 				BF87A6BAEAEA8185FBF57C8B,
 				F9F6D4DFF51E05AF67E8DA43,
 				B04AD5111FD0FB0CF773D527,
+				2662EFF1D1B9D46E6BDE9D7D,
+				9C358290DC7704485AD76FF5,
+				C58ABCCAA8D47858E7353619,
+				567E5EDC81A947A6F78017A6,
+				4D6CA278EF73DAD49583CE66,
+				551AB6FEEAD121F10551BADA,
+				F07E0E5515548A6D12018166,
 			);
 			isa = PBXGroup;
 			name = plugins;
@@ -64,16 +71,29 @@
 			fileRef = F9F6D4DFF51E05AF67E8DA43;
 			isa = PBXBuildFile;
 		};
+		2662EFF1D1B9D46E6BDE9D7D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = memberDetails.js;
+			sourceTree = "<group>";
+		};
 		285BB1C1430063331E9F5DD0 = {
 			buildActionMask = 2147483647;
 			files = (
 				F2685B76AB57C3F2489F68E1,
 				1A5A81E5EA84EA2E1F41CAA4,
 				263C3250E44852CC2B70010C,
-				EE73B129AABB7969A526F9C4,
 				71C8D3A668EE20192EEC9E2E,
 				4E9AC847E3E82B868AFD8485,
 				D6CB6CE64800AC5C62A979E5,
+				AF0F4848DE1EDB298B8E805A,
+				CEFCB402C05EC77E1D5B2B51,
+				B6D2EACF3764664FA837E2C8,
+				34082BBDA465A5D2039D997A,
+				CDFCDD8C0D648856D7F946EB,
+				420BCFA48A2ADBAF1FE51E97,
+				DAB74121E4506B049F292D85,
+				BE31C6E520BB73668CEDC7E2,
 				7023F32FFD0F243298B7280A,
 			);
 			isa = PBXResourcesBuildPhase;
@@ -101,6 +121,10 @@
 			name = DiscordPlus;
 			path = DiscordPlus;
 			sourceTree = "<group>";
+		};
+		34082BBDA465A5D2039D997A = {
+			fileRef = F07E0E5515548A6D12018166;
+			isa = PBXBuildFile;
 		};
 		354589B28580510B6EC24620 = {
 			buildConfigurations = (
@@ -130,7 +154,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf-with-dsym;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -142,7 +166,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mustafa.discordplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -159,6 +183,10 @@
 			lastKnownFileType = sourcecode.swift;
 			path = CustomCSSView.swift;
 			sourceTree = "<group>";
+		};
+		420BCFA48A2ADBAF1FE51E97 = {
+			fileRef = 9C358290DC7704485AD76FF5;
+			isa = PBXBuildFile;
 		};
 		424153ED3CD079DB4DB459AF = {
 			buildActionMask = 2147483647;
@@ -239,12 +267,18 @@
 			isa = XCBuildConfiguration;
 			name = Debug;
 		};
+		4D6CA278EF73DAD49583CE66 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = silentTyping.js;
+			sourceTree = "<group>";
+		};
 		4D8F6610AF6606489ED8DFBC = {
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTABILITY = YES;
@@ -257,7 +291,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mustafa.discordplus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -288,10 +322,16 @@
 			path = SettingsView.swift;
 			sourceTree = "<group>";
 		};
-		5D6256076C2B9AC68C16A59C = {
+		551AB6FEEAD121F10551BADA = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.javascript;
-			path = hideBlocked.js;
+			path = timeoutCountdown.js;
+			sourceTree = "<group>";
+		};
+		567E5EDC81A947A6F78017A6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = serverInfo.js;
 			sourceTree = "<group>";
 		};
 		5ED7A97F969D0E2EE6A1F7D5 = {
@@ -425,6 +465,12 @@
 			path = copyIDs.js;
 			sourceTree = "<group>";
 		};
+		9C358290DC7704485AD76FF5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = messageBookmarks.js;
+			sourceTree = "<group>";
+		};
 		A31AA4C746EA3DBDF463337C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.swift;
@@ -433,6 +479,10 @@
 		};
 		A76AB5507385B9743D49945B = {
 			fileRef = 6E284BC900FF0E3FE22CE958;
+			isa = PBXBuildFile;
+		};
+		AF0F4848DE1EDB298B8E805A = {
+			fileRef = C58ABCCAA8D47858E7353619;
 			isa = PBXBuildFile;
 		};
 		B04AD5111FD0FB0CF773D527 = {
@@ -447,14 +497,28 @@
 			path = UserScripts.swift;
 			sourceTree = "<group>";
 		};
+		B6D2EACF3764664FA837E2C8 = {
+			fileRef = 2662EFF1D1B9D46E6BDE9D7D;
+			isa = PBXBuildFile;
+		};
 		B7393CC37F89C4A96DEF99DA = {
 			fileRef = 6CB6E9A765009186A5313A0E;
+			isa = PBXBuildFile;
+		};
+		BE31C6E520BB73668CEDC7E2 = {
+			fileRef = 4D6CA278EF73DAD49583CE66;
 			isa = PBXBuildFile;
 		};
 		BF87A6BAEAEA8185FBF57C8B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.javascript;
 			path = hideNitro.js;
+			sourceTree = "<group>";
+		};
+		C12AAE4278663D2717578078 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = exportTools.js;
 			sourceTree = "<group>";
 		};
 		C28449456A5A705A7479770B = {
@@ -490,6 +554,12 @@
 			isa = XCBuildConfiguration;
 			name = Release;
 		};
+		C58ABCCAA8D47858E7353619 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = messageLogger.js;
+			sourceTree = "<group>";
+		};
 		C9ACC8A4B92F7346497A16C8 = {
 			fileRef = 7CB8ECBDE409D4331953D00C;
 			isa = PBXBuildFile;
@@ -499,6 +569,14 @@
 			lastKnownFileType = sourcecode.swift;
 			path = SettingsStore.swift;
 			sourceTree = "<group>";
+		};
+		CDFCDD8C0D648856D7F946EB = {
+			fileRef = C12AAE4278663D2717578078;
+			isa = PBXBuildFile;
+		};
+		CEFCB402C05EC77E1D5B2B51 = {
+			fileRef = 551AB6FEEAD121F10551BADA;
+			isa = PBXBuildFile;
 		};
 		D1D0524B025E57AFFF263442 = {
 			children = (
@@ -517,6 +595,10 @@
 		};
 		D8F61F4559A9E85AD5ACE382 = {
 			fileRef = 07FE49E514DFCBF096A69287;
+			isa = PBXBuildFile;
+		};
+		DAB74121E4506B049F292D85 = {
+			fileRef = 567E5EDC81A947A6F78017A6;
 			isa = PBXBuildFile;
 		};
 		DD12C2868DD90FBDB8B3A148 = {
@@ -550,9 +632,11 @@
 			fileRef = E7E8F68207365CB360E3EDF6;
 			isa = PBXBuildFile;
 		};
-		EE73B129AABB7969A526F9C4 = {
-			fileRef = 5D6256076C2B9AC68C16A59C;
-			isa = PBXBuildFile;
+		F07E0E5515548A6D12018166 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = translateMessages.js;
+			sourceTree = "<group>";
 		};
 		F20BD615224D2C0B7529C26F = {
 			fileRef = E85CEBCB6361593F79D73670;

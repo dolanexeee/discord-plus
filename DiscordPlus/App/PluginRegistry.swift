@@ -45,16 +45,6 @@ enum PluginRegistry {
             ]
         ),
         PluginMeta(
-            id: "hideBlocked",
-            name: "Hide Blocked Messages",
-            nameAr: "إخفاء الرسائل المحظورة",
-            summary: "Hide blocked and ignored message placeholders from chat.",
-            summaryAr: "أخفِ عناصر الرسائل المحظورة والمتجاهَلة من المحادثة.",
-            fileName: "hideBlocked.js",
-            defaultEnabled: true,
-            options: []
-        ),
-        PluginMeta(
             id: "mediaTools",
             name: "Media Tools",
             nameAr: "أدوات الوسائط",
@@ -83,6 +73,92 @@ enum PluginRegistry {
             fileName: "hideNitro.js",
             defaultEnabled: false,
             options: []
+        ),
+        PluginMeta(
+            id: "messageLogger",
+            name: "Message Logger",
+            nameAr: "سجل الرسائل",
+            summary: "Keeps messages seen while the logger runs: deleted messages stay visible and edits keep history. Cannot recover messages deleted before it was enabled.",
+            summaryAr: "يحفظ الرسائل التي تصل أثناء تشغيل السجل: الرسائل المحذوفة تبقى ظاهرة والتعديلات تحتفظ بسجلها. لا يستطيع استرجاع رسائل حُذفت قبل تفعيله.",
+            fileName: "messageLogger.js",
+            defaultEnabled: true,
+            options: [
+                PluginOption(id: "showDeleted", label: "Keep deleted messages visible", labelAr: "إبقاء الرسائل المحذوفة ظاهرة", defaultValue: true),
+                PluginOption(id: "keepEdits", label: "Keep edit history", labelAr: "الاحتفاظ بسجل التعديلات", defaultValue: true)
+            ]
+        ),
+        PluginMeta(
+            id: "timeoutCountdown",
+            name: "Timeout Countdown",
+            nameAr: "عدّاد التايم أوت",
+            summary: "Live countdown for timed-out members in profiles and the member list, with the exact end time.",
+            summaryAr: "عدّاد حي للأعضاء المأخوذين تايم أوت في الملفات وقائمة الأعضاء، مع وقت الانتهاء الدقيق.",
+            fileName: "timeoutCountdown.js",
+            defaultEnabled: true,
+            options: []
+        ),
+        PluginMeta(
+            id: "memberDetails",
+            name: "Member Details",
+            nameAr: "تفاصيل الأعضاء",
+            summary: "Account creation date, server join date, roles and account age in user profiles.",
+            summaryAr: "تاريخ إنشاء الحساب وتاريخ الانضمام للخادم والأدوار وعمر الحساب في ملفات المستخدمين.",
+            fileName: "memberDetails.js",
+            defaultEnabled: true,
+            options: []
+        ),
+        PluginMeta(
+            id: "translateMessages",
+            name: "Translate Messages",
+            nameAr: "ترجمة الرسائل",
+            summary: "Long-press a message to translate it in place, Arabic ↔ English.",
+            summaryAr: "اضغط مطولًا على رسالة لترجمتها في مكانها، عربي ↔ إنجليزي.",
+            fileName: "translateMessages.js",
+            defaultEnabled: true,
+            options: []
+        ),
+        PluginMeta(
+            id: "exportTools",
+            name: "Export Tools",
+            nameAr: "أدوات التصدير",
+            summary: "Export loaded channel messages (text or JSON) and the server member list (CSV).",
+            summaryAr: "صدّر رسائل القناة المحمّلة (نص أو JSON) وقائمة أعضاء الخادم (CSV).",
+            fileName: "exportTools.js",
+            defaultEnabled: true,
+            options: []
+        ),
+        PluginMeta(
+            id: "messageBookmarks",
+            name: "Message Bookmarks",
+            nameAr: "حفظ الرسائل",
+            summary: "Save messages locally and read them later from the saved list.",
+            summaryAr: "احفظ الرسائل على جهازك واقرأها لاحقًا من قائمة المحفوظات.",
+            fileName: "messageBookmarks.js",
+            defaultEnabled: true,
+            options: []
+        ),
+        PluginMeta(
+            id: "serverInfo",
+            name: "Server Info",
+            nameAr: "معلومات الخادم",
+            summary: "Server creation date, member count, boost level and channel count.",
+            summaryAr: "تاريخ إنشاء الخادم وعدد الأعضاء ومستوى البوست وعدد القنوات.",
+            fileName: "serverInfo.js",
+            defaultEnabled: true,
+            options: []
+        ),
+        PluginMeta(
+            id: "silentTyping",
+            name: "Silent Typing",
+            nameAr: "الكتابة الصامتة",
+            summary: "Stop sending your typing indicator and/or hide others' typing indicators.",
+            summaryAr: "أوقف إرسال مؤشر الكتابة خاصتك و/أو أخفِ مؤشر كتابة الآخرين.",
+            fileName: "silentTyping.js",
+            defaultEnabled: true,
+            options: [
+                PluginOption(id: "blockOutgoing", label: "Don't send my typing", labelAr: "لا ترسل مؤشر كتابتي", defaultValue: true),
+                PluginOption(id: "hideIncoming", label: "Hide others' typing", labelAr: "أخفِ مؤشر كتابة الآخرين", defaultValue: true)
+            ]
         )
     ]
 

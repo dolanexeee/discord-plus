@@ -29,17 +29,38 @@ Built for sideloading: the GitHub Actions build produces an **unsigned**
   Vencord/Kettu pattern, all original code). Bundled plugins plus
   user-added plugins loaded from URLs. Per-plugin enable/disable and
   settings; toggling a plugin reloads the web view.
-- **Built-in plugins**
+- **Built-in plugins** (13)
   1. **Copy IDs** — long-press a message, user, server or channel to copy
-     its ID.
+     its ID. Also hosts the Translate and Bookmark actions in its menu.
   2. **Local Timestamps** — full local date/time on message timestamps
      (tooltip, or replace the displayed text).
-  3. **Hide Blocked Messages** — hides blocked/ignored message
-     placeholders.
-  4. **Media Tools** — tap an image to zoom fullscreen, with download;
+  3. **Media Tools** — tap an image to zoom fullscreen, with download;
      videos open in the same lightbox with controls.
-  5. **Custom CSS Loader** — applies the CSS you write in Settings.
-  6. **Hide Nitro Upsell** — hides Nitro upsell links and buttons.
+  4. **Custom CSS Loader** — applies the CSS you write in Settings.
+  5. **Hide Nitro Upsell** — hides Nitro upsell links and buttons.
+  6. **Message Logger** — keeps messages seen while the logger runs:
+     deleted messages stay visible (marked deleted) and edits keep a
+     history, plus a 📜 log panel. **Limit: it cannot recover messages
+     deleted before it was enabled.**
+  7. **Timeout Countdown** — live countdown (remaining time + exact end
+     time) for timed-out members, in profiles and the member list. Reads
+     the timeout end from Discord's own client store
+     (`GuildMemberStore.communicationDisabledUntil`), with the profile
+     text as a fallback.
+  8. **Member Details** — account creation date, server join date, roles
+     and account age in user profiles.
+  9. **Translate Messages** — long-press a message to translate it in
+     place, Arabic ↔ English (auto direction), via free no-key endpoints
+     (Google gtx, MyMemory fallback).
+  10. **Export Tools** — export loaded channel messages (text or JSON)
+      and the server member list (CSV). Only what is loaded on screen is
+      exported.
+  11. **Message Bookmarks** — save messages locally (🔖 button opens the
+      saved list, with jump-to-message).
+  12. **Server Info** — server creation date, member count, boost level
+      and channel count.
+  13. **Silent Typing** — stop sending your typing indicator and/or hide
+      others' typing indicators.
 - **Native settings UI** — SwiftUI, Arabic-first with English (RTL), for
   themes, plugins, custom CSS, and an About screen.
 - **Privacy** — no credentials or tokens are stored, logged, or
@@ -96,9 +117,15 @@ tools/gen_project.py          Xcode project generator
 - **Desktop layout on a phone** — the macOS user agent serves the desktop
   web client, so the layout is wide and needs pinch-zoom/scroll. A mobile
   user agent is a possible future option.
-- **DOM-dependent plugins** — Copy IDs, timestamps and blocked-message
-  hiding read Discord's web DOM, which Discord changes between releases;
-  they are best-effort and may need updates after a Discord web update.
+- **DOM/store-dependent plugins** — Copy IDs, timestamps, the logger,
+  the timeout countdown and member details read Discord's web DOM and
+  client stores, which Discord changes between releases; they are
+  best-effort and may need updates after a Discord web update.
+- **Message Logger limit** — it can only show messages that arrived while
+  it was running. It cannot recover messages deleted before the app was
+  installed or before the plugin was enabled.
+- **Translate** uses free no-key endpoints (Google gtx, MyMemory
+  fallback); only the message text is sent to the translation service.
 - **Downloaded media** goes to the web view's download handling, not to
   the Photos library directly.
 

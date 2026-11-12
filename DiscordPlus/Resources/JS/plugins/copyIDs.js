@@ -52,7 +52,7 @@
     document.removeEventListener('click', hideMenu, true);
   }
 
-  function showMenu(x, y, ids) {
+  function showMenu(x, y, ids, target) {
     hideMenu();
     menuEl = document.createElement('div');
     menuEl.style.cssText = 'position:fixed;z-index:99999;left:' + x + 'px;top:' + y + 'px;background:#111214;border:1px solid #4f545c;border-radius:8px;padding:8px;min-width:230px;box-shadow:0 8px 24px rgba(0,0,0,.6);color:#dbdee1;font:13px -apple-system,sans-serif;';
@@ -81,6 +81,36 @@
       line.appendChild(btn);
       menuEl.appendChild(line);
     });
+    // Actions hosted here so one long-press shows one menu: other plugins
+    // expose an action, this menu calls it.
+    if (ids.messageId && target) {
+      var sep = document.createElement('div');
+      sep.style.cssText = 'height:1px;background:#2b2d31;margin:6px 0;';
+      menuEl.appendChild(sep);
+      var actionRow = function (label, fn) {
+        var b = document.createElement('button');
+        b.textContent = label;
+        b.style.cssText = 'display:block;width:100%;text-align:left;background:none;border:0;color:#dbdee1;font-size:13px;padding:8px 4px;cursor:pointer;';
+        b.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          hideMenu();
+          fn();
+        });
+        menuEl.appendChild(b);
+      };
+      if (DP.plugins.translateMessages && DP.isPluginEnabled('translateMessages')) {
+        actionRow('🌐 Translate / ترجمة', function () {
+          DP.plugins.translateMessages.translateMessage(target);
+        });
+      }
+      if (DP.plugins.messageBookmarks && DP.isPluginEnabled('messageBookmarks')) {
+        var saved = DP.plugins.messageBookmarks.isBookmarked &&
+          DP.plugins.messageBookmarks.isBookmarked(ids.messageId);
+        actionRow(saved ? '🔖 Remove bookmark / إزالة الحفظ' : '🔖 Bookmark / حفظ الرسالة', function () {
+          DP.plugins.messageBookmarks.bookmarkMessage(target);
+        });
+      }
+    }
     if (!menuEl.children.length) return;
     document.body.appendChild(menuEl);
     var rect = menuEl.getBoundingClientRect();
@@ -100,7 +130,7 @@
         if (!ids.messageId && !ids.userId && !ids.channelId && !ids.guildId) return;
         e.preventDefault();
         e.stopPropagation();
-        showMenu(e.clientX, e.clientY, ids);
+        showMenu(e.clientX, e.clientY, ids, e.target);
       };
       document.addEventListener('contextmenu', self._handler, true);
     },
