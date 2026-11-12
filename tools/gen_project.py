@@ -52,10 +52,11 @@ def obj_id(seed: str) -> str:
     return hashlib.md5(seed.encode("utf-8")).hexdigest()[:24].upper()
 
 
-# ---------------------------------------------------------------------------
-# OpenStep plist serialisation
-# ---------------------------------------------------------------------------
-BARE_RE = re.compile(r"^[A-Za-z0-9_./$+\-]+$")
+# Old-style (OpenStep) plist bare-string charset: alphanumerics plus _ . / $ -
+# NOTE: '+' is NOT allowed bare — "gnu++20" must be quoted, or xcodebuild
+# fails with "missing semicolon in dictionary". YES/NO are fine bare
+# (in the old-style format they are just strings).
+BARE_RE = re.compile(r"^[A-Za-z0-9_./$\-]+$")
 
 
 def q(value):
@@ -65,8 +66,6 @@ def q(value):
     if isinstance(value, int):
         return str(value)
     s = str(value)
-    if s in ("YES", "NO"):
-        return '"%s"' % s
     if BARE_RE.match(s):
         return s
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
@@ -407,7 +406,21 @@ def self_check(text):
     if depth != 0:
         print("SELF-CHECK FAILED: unbalanced braces, depth =", depth, file=sys.stderr)
         return False
-    print("self-check OK: %d objects, %d ID references, braces balanced" % (len(objects), len(tokens)))
+    # Old-style plist bare-value check: every unquoted scalar must match the
+    # safe bare charset (24-hex IDs and plain numbers included). This is the
+    # check that would have caught the "gnu++20" failure.
+    bad = []
+    for m in re.finditer(r"=\s*([^;\(\{]+);", text):
+        v = m.group(1).strip()
+        if v.startswith('"'):
+            continue
+        if re.fullmatch(r"[0-9A-F]{24}", v) or re.fullmatch(r"\d+", v) or BARE_RE.match(v):
+            continue
+        bad.append(v)
+    if bad:
+        print("SELF-CHECK FAILED: unquotable bare values:", sorted(set(bad)), file=sys.stderr)
+        return False
+    print("self-check OK: %d objects, %d ID references, braces balanced, bare values valid" % (len(objects), len(tokens)))
     return True
 
 
